@@ -16,6 +16,7 @@ import { AppStates } from './core/store';
 import { AppComponent } from './core/containers/app.component';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
+import { NgxsStoragePluginModule } from '@ngxs/storage-plugin';
 
 @NgModule({
   imports: [
@@ -27,6 +28,9 @@ import { AppRoutingModule } from './app-routing.module';
     AppRoutingModule,
 
     NgxsModule.forRoot(AppStates),
+    NgxsStoragePluginModule.forRoot({
+      key: ['books'],
+    }),
     NgxsRouterPluginModule.forRoot(),
     NgxsReduxDevtoolsPluginModule.forRoot({
       name: 'Ngxs Book Store DevTools',

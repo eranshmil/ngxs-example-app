@@ -11,14 +11,12 @@ Built with [@angular/cli](https://github.com/angular/angular-cli)
 
 1.  Explain about running the scripts.
 2.  Add store unit tests.
-3.  Add Snapshots to git.
-4.  Add @ngxs to included.
-5.  Add @ngxs/storage-plugin.
-6.  Get rid of entity base.
-7.  Remove simple selectors.
+3.  Get rid of entity base.
+4.  Remove simple selectors.
 
 ### Included
 
+- [ngxs](https://ngxs.gitbook.io/ngxs/) - including storage, router, devtools and router plugins.
 - [jest](https://facebook.github.io/jest/)
 
 ### Quick start
