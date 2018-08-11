@@ -2,29 +2,30 @@ import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { MatInputModule, MatCardModule } from '@angular/material';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { StoreModule, Store, combineReducers } from '@ngrx/store';
+
+import { NgxsModule, Store } from '@ngxs/store';
+
 import { LoginPageComponent } from './login-page.component';
 import { LoginFormComponent } from '../components/login-form.component';
-import * as AuthActions from '../actions/auth.actions';
-import * as fromAuth from '../reducers';
+import { AuthStates, Login } from '../store';
+import { AuthService } from '../services/auth.service';
 
 describe('Login Page', () => {
   let fixture: ComponentFixture<LoginPageComponent>;
-  let store: Store<fromAuth.State>;
+  let store: Store;
   let instance: LoginPageComponent;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
-        StoreModule.forRoot({
-          auth: combineReducers(fromAuth.reducers),
-        }),
+        NgxsModule.forRoot(AuthStates),
         MatInputModule,
         MatCardModule,
         ReactiveFormsModule,
       ],
       declarations: [LoginPageComponent, LoginFormComponent],
+      providers: [AuthService],
     });
 
     fixture = TestBed.createComponent(LoginPageComponent);
@@ -57,7 +58,7 @@ describe('Login Page', () => {
 
   it('should dispatch a login event on submit', () => {
     const $event: any = {};
-    const action = new AuthActions.Login($event);
+    const action = new Login($event);
 
     instance.onSubmit($event);
 

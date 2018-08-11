@@ -1,12 +1,15 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import {
   MatCardModule,
   MatInputModule,
   MatProgressSpinnerModule,
 } from '@angular/material';
-import { combineReducers, Store, StoreModule } from '@ngrx/store';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+
+import { cold } from 'jasmine-marbles';
+import { NgxsModule, Store } from '@ngxs/store';
 
 import { BookSearchComponent } from '../components/book-search.component';
 import { BookPreviewComponent } from '../components/book-preview.component';
@@ -16,21 +19,21 @@ import { EllipsisPipe } from '../../shared/pipes/ellipsis.pipe';
 import { BookAuthorsComponent } from '../components/book-authors.component';
 import { AddCommasPipe } from '../../shared/pipes/add-commas.pipe';
 import { FindBookPageComponent } from './find-book-page.component';
-import * as BookActions from '../actions/book.actions';
-import * as fromBooks from '../reducers';
+import { BooksStates, Search } from '../store';
+import { GoogleBooksService } from '../../core/services/google-books.service';
 
 describe('Find Book Page', () => {
   let fixture: ComponentFixture<FindBookPageComponent>;
-  let store: Store<fromBooks.State>;
+  let store: Store;
+  let googleBooksService: any;
   let instance: FindBookPageComponent;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
+        HttpClientModule,
         NoopAnimationsModule,
-        StoreModule.forRoot({
-          books: combineReducers(fromBooks.reducers),
-        }),
+        NgxsModule.forRoot(BooksStates),
         RouterTestingModule,
         MatInputModule,
         MatCardModule,
@@ -46,11 +49,19 @@ describe('Find Book Page', () => {
         AddCommasPipe,
         EllipsisPipe,
       ],
+      providers: [
+        HttpClient,
+        {
+          provide: GoogleBooksService,
+          useValue: { searchBooks: jest.fn() },
+        },
+      ],
     });
 
     fixture = TestBed.createComponent(FindBookPageComponent);
     instance = fixture.componentInstance;
     store = TestBed.get(Store);
+    googleBooksService = TestBed.get(GoogleBooksService);
 
     spyOn(store, 'dispatch').and.callThrough();
   });
@@ -61,9 +72,11 @@ describe('Find Book Page', () => {
     expect(fixture).toMatchSnapshot();
   });
 
-  it('should dispatch a book.Search action on search', () => {
+  it('should dispatch a Search action on search', () => {
     const $event: string = 'book name';
-    const action = new BookActions.Search($event);
+    const action = new Search($event);
+    const response = cold('-a|', { a: [] });
+    googleBooksService.searchBooks = jest.fn(() => response);
 
     instance.search($event);
 

@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { take } from 'rxjs/operators';
 
-import * as BookActions from '../actions/book.actions';
+import { Select, Store } from '@ngxs/store';
+
 import { Book } from '../models/book';
-import * as fromBooks from '../reducers';
+import { BooksState, SearchState } from '../store';
+import { Search } from '../store/actions/book.actions';
 
 @Component({
   selector: 'bc-find-book-page',
@@ -16,22 +16,14 @@ import * as fromBooks from '../reducers';
   `,
 })
 export class FindBookPageComponent {
-  searchQuery$: Observable<string>;
-  books$: Observable<Book[]>;
-  loading$: Observable<boolean>;
-  error$: Observable<string>;
+  @Select(SearchState.getQuery) searchQuery$: Observable<string>;
+  @Select(BooksState.getSearchResults) books$: Observable<Book[]>;
+  @Select(SearchState.getLoading) loading$: Observable<boolean>;
+  @Select(SearchState.getError) error$: Observable<string>;
 
-  constructor(private store: Store<fromBooks.State>) {
-    this.searchQuery$ = store.pipe(
-      select(fromBooks.getSearchQuery),
-      take(1)
-    );
-    this.books$ = store.pipe(select(fromBooks.getSearchResults));
-    this.loading$ = store.pipe(select(fromBooks.getSearchLoading));
-    this.error$ = store.pipe(select(fromBooks.getSearchError));
-  }
+  constructor(private store: Store) {}
 
   search(query: string) {
-    this.store.dispatch(new BookActions.Search(query));
+    this.store.dispatch(new Search(query));
   }
 }

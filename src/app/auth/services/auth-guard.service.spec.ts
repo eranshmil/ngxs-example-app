@@ -1,24 +1,21 @@
-import { TestBed, inject } from '@angular/core/testing';
-import { StoreModule, Store, combineReducers } from '@ngrx/store';
+import { TestBed } from '@angular/core/testing';
+
 import { cold } from 'jasmine-marbles';
+
+import { NgxsModule, Store } from '@ngxs/store';
+
 import { AuthGuard } from './auth-guard.service';
-import * as AuthActions from '../actions/auth.actions';
-import * as fromRoot from '../../reducers';
-import * as fromAuth from '../reducers';
+import { AuthStates, LoginSuccess } from '../store';
+import { AuthService } from './auth.service';
 
 describe('Auth Guard', () => {
   let guard: AuthGuard;
-  let store: Store<any>;
+  let store: Store;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        StoreModule.forRoot({
-          ...fromRoot.reducers,
-          auth: combineReducers(fromAuth.reducers),
-        }),
-      ],
-      providers: [AuthGuard],
+      imports: [NgxsModule.forRoot(AuthStates)],
+      providers: [AuthGuard, AuthService],
     });
 
     store = TestBed.get(Store);
@@ -34,7 +31,7 @@ describe('Auth Guard', () => {
 
   it('should return true if the user state is logged in', () => {
     const user: any = {};
-    const action = new AuthActions.LoginSuccess({ user });
+    const action = new LoginSuccess({ user });
     store.dispatch(action);
 
     const expected = cold('(a|)', { a: true });

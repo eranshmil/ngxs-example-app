@@ -8,6 +8,7 @@
     "start": "yarn run cli serve",
     "start:aot": "yarn run cli serve --prod",
     "test": "jest --watch",
+    "gen:snp": "jest --updateSnapshot",
     "build:prod": "yarn cli build --prod"
   },
   "lint-staged": {
@@ -35,6 +36,10 @@
     "@ngrx/router-store": "github:ngrx/router-store-builds",
     "@ngrx/store": "github:ngrx/store-builds",
     "@ngrx/store-devtools": "github:ngrx/store-devtools-builds",
+    "@ngxs/devtools-plugin": "^3.2.0",
+    "@ngxs/logger-plugin": "^3.2.0",
+    "@ngxs/router-plugin": "^3.2.0",
+    "@ngxs/store": "^3.2.0",
     "core-js": "^2.5.4",
     "hammerjs": "^2.0.8",
     "ngrx-store-freeze": "^0.2.4",
@@ -49,7 +54,7 @@
     "@angular/language-service": "^6.1.0",
     "@types/jasmine": "~2.8.6",
     "@types/jasminewd2": "~2.0.3",
-    "@types/jest": "^20.0.2",
+    "@types/jest": "^21.0.2",
     "@types/node": "~8.9.4",
     "codelyzer": "~4.2.1",
     "husky": "^0.14.3",

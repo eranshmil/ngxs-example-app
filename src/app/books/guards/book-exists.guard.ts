@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router } from '@angular/router';
-import { select, Store } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
-import { catchError, filter, map, switchMap, take, tap } from 'rxjs/operators';
+import { catchError, map, switchMap, take, tap } from 'rxjs/operators';
+
+import { Store } from '@ngxs/store';
 
 import { GoogleBooksService } from '../../core/services/google-books.service';
-import * as BookActions from '../actions/book.actions';
-import * as fromBooks from '../reducers';
+import { BooksState, CollectionState, Load } from '../store';
 
 /**
  * Guards are hooks into the route resolution process, providing an opportunity
@@ -16,7 +16,7 @@ import * as fromBooks from '../reducers';
 @Injectable()
 export class BookExistsGuard implements CanActivate {
   constructor(
-    private store: Store<fromBooks.State>,
+    private store: Store,
     private googleBooks: GoogleBooksService,
     private router: Router
   ) {}
@@ -27,11 +27,7 @@ export class BookExistsGuard implements CanActivate {
    * has finished.
    */
   waitForCollectionToLoad(): Observable<boolean> {
-    return this.store.pipe(
-      select(fromBooks.getCollectionLoaded),
-      filter(loaded => loaded),
-      take(1)
-    );
+    return this.store.select(CollectionState.getLoaded).pipe(take(1));
   }
 
   /**
@@ -39,9 +35,8 @@ export class BookExistsGuard implements CanActivate {
    * in the Store
    */
   hasBookInStore(id: string): Observable<boolean> {
-    return this.store.pipe(
-      select(fromBooks.getBookEntities),
-      map(entities => !!entities[id]),
+    return this.store.select(BooksState.getEntities).pipe(
+      map(entities => entities && !!entities[id]),
       take(1)
     );
   }
@@ -52,8 +47,8 @@ export class BookExistsGuard implements CanActivate {
    */
   hasBookInApi(id: string): Observable<boolean> {
     return this.googleBooks.retrieveBook(id).pipe(
-      map(bookEntity => new BookActions.Load(bookEntity)),
-      tap((action: BookActions.Load) => this.store.dispatch(action)),
+      map(bookEntity => new Load(bookEntity)),
+      tap((action: Load) => this.store.dispatch(action)),
       map(book => !!book),
       catchError(() => {
         this.router.navigate(['/404']);

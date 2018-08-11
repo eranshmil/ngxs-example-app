@@ -1,28 +1,30 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { SelectedBookPageComponent } from './selected-book-page.component';
-import { combineReducers, Store, StoreModule } from '@ngrx/store';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule } from '@angular/material';
 
-import * as CollectionActions from '../actions/collection.actions';
-import * as fromBooks from '../reducers';
+import { NgxsModule, Store } from '@ngxs/store';
+
 import { BookDetailComponent } from '../components/book-detail.component';
 import { Book, generateMockBook } from '../models/book';
 import { BookAuthorsComponent } from '../components/book-authors.component';
 import { AddCommasPipe } from '../../shared/pipes/add-commas.pipe';
+import { AddBook, BooksStates, RemoveBook } from '../store';
+import { CoreModule } from '../../core/core.module';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('Selected Book Page', () => {
   let fixture: ComponentFixture<SelectedBookPageComponent>;
-  let store: Store<fromBooks.State>;
+  let store: Store;
   let instance: SelectedBookPageComponent;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
+        CoreModule.forRoot(),
+        HttpClientModule,
         NoopAnimationsModule,
-        StoreModule.forRoot({
-          books: combineReducers(fromBooks.reducers),
-        }),
+        NgxsModule.forRoot(BooksStates),
         MatCardModule,
       ],
       declarations: [
@@ -46,18 +48,18 @@ describe('Selected Book Page', () => {
     expect(fixture).toMatchSnapshot();
   });
 
-  it('should dispatch a collection.AddBook action when addToCollection is called', () => {
+  it('should dispatch a AddBook action when addToCollection is called', () => {
     const $event: Book = generateMockBook();
-    const action = new CollectionActions.AddBook($event);
+    const action = new AddBook($event);
 
     instance.addToCollection($event);
 
     expect(store.dispatch).toHaveBeenLastCalledWith(action);
   });
 
-  it('should dispatch a collection.RemoveBook action on removeFromCollection', () => {
+  it('should dispatch a RemoveBook action on removeFromCollection', () => {
     const $event: Book = generateMockBook();
-    const action = new CollectionActions.RemoveBook($event);
+    const action = new RemoveBook($event);
 
     instance.removeFromCollection($event);
 

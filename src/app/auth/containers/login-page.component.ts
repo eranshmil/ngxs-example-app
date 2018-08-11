@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Store, select } from '@ngrx/store';
+import { Observable } from 'rxjs';
+
+import { Store, Select } from '@ngxs/store';
+
 import { Authenticate } from '../models/user';
-import * as fromAuth from '../reducers';
-import * as AuthActions from '../actions/auth.actions';
+import { Login, LoginPageState } from '../store';
 
 @Component({
   selector: 'bc-login-page',
@@ -16,14 +18,14 @@ import * as AuthActions from '../actions/auth.actions';
   styles: [],
 })
 export class LoginPageComponent implements OnInit {
-  pending$ = this.store.pipe(select(fromAuth.getLoginPagePending));
-  error$ = this.store.pipe(select(fromAuth.getLoginPageError));
+  @Select(LoginPageState.getPending) pending$: Observable<boolean>;
+  @Select(LoginPageState.getError) error$: Observable<string>;
 
-  constructor(private store: Store<fromAuth.State>) {}
+  constructor(private store: Store) {}
 
   ngOnInit() {}
 
   onSubmit($event: Authenticate) {
-    this.store.dispatch(new AuthActions.Login($event));
+    this.store.dispatch(new Login($event));
   }
 }
