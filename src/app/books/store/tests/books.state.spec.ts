@@ -24,8 +24,6 @@ describe('Books', () => {
   const book1: Book = generateMockBook();
   const book2: Book = { ...generateMockBook(), id: '2' };
 
-  const defaultState = { books: booksStateDefaults };
-
   const ids: string[] = [book1.id, book2.id];
   const entities: { [id: string]: Book } = {
     [book1.id]: book1,
@@ -56,7 +54,7 @@ describe('Books', () => {
     }).compileComponents();
 
     store = TestBed.get(Store);
-    store.reset(defaultState);
+    store.reset({ books: booksStateDefaults });
   }));
 
   it('[action] it should load a book', async(() => {
@@ -72,12 +70,12 @@ describe('Books', () => {
   }));
 
   it('[action] it should select a book', async(() => {
-    store.dispatch(new Select(book1.id));
+    store.dispatch(new Select(book2.id));
 
     store
       .selectOnce(state => state.books.selectedBookId)
-      .subscribe(selectedBookId => {
-        expect(selectedBookId).toEqual(book1.id);
+      .subscribe(actualSelectedBookId => {
+        expect(actualSelectedBookId).toEqual(book2.id);
       });
   }));
 

@@ -1,0 +1,46 @@
+import { async, TestBed } from '@angular/core/testing';
+
+import { NgxsModule, Store } from '@ngxs/store';
+
+import { Book, generateMockBook } from '../../models/book';
+
+import {
+  collectionStateDefaults,
+  CollectionState,
+  RemoveBook,
+  AddBook,
+} from '../index';
+
+describe('Books', () => {
+  let store: Store;
+
+  const book: Book = generateMockBook();
+
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      imports: [NgxsModule.forRoot([CollectionState])],
+    }).compileComponents();
+
+    store = TestBed.get(Store);
+  }));
+
+  it('[action] it should add book', async(() => {
+    store.reset({ collection: collectionStateDefaults });
+
+    store.dispatch(new AddBook(book));
+
+    store.selectOnce(state => state.collection.ids).subscribe(actualIds => {
+      expect(actualIds).toEqual([book.id]);
+    });
+  }));
+
+  it('[action] it should remove book', async(() => {
+    store.reset({ collection: { ...collectionStateDefaults, ids: [book.id] } });
+
+    store.dispatch(new RemoveBook(book));
+
+    store.selectOnce(state => state.collection.ids).subscribe(actualIds => {
+      expect(actualIds).toEqual([]);
+    });
+  }));
+});

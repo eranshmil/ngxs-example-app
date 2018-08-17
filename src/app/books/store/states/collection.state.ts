@@ -8,13 +8,15 @@ export interface CollectionStateModel {
   ids: string[];
 }
 
+export const collectionStateDefaults: CollectionStateModel = {
+  loaded: false,
+  loading: false,
+  ids: [],
+};
+
 @State<CollectionStateModel>({
   name: 'collection',
-  defaults: {
-    loaded: false,
-    loading: false,
-    ids: [],
-  },
+  defaults: collectionStateDefaults,
 })
 export class CollectionState {
   @Selector()
@@ -38,9 +40,10 @@ export class CollectionState {
     action: AddBook
   ) {
     const state = getState();
+    const bookId = action.payload.id;
 
     if (state.ids.indexOf(action.payload.id) === -1) {
-      patchState({ ids: [...state.ids, action.payload.id] });
+      patchState({ ids: [...state.ids, bookId] });
     }
   }
 
@@ -50,7 +53,8 @@ export class CollectionState {
     action: RemoveBook
   ) {
     const state = getState();
+    const bookId = action.payload.id;
 
-    patchState({ ids: state.ids.filter(id => id !== action.payload.id) });
+    patchState({ ids: state.ids.filter(id => id !== bookId) });
   }
 }
