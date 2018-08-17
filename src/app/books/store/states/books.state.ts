@@ -20,13 +20,15 @@ export interface BooksStateModel {
   selectedBookId: string | null;
 }
 
+export const booksStateDefaults: BooksStateModel = {
+  ids: [],
+  entities: {},
+  selectedBookId: null,
+};
+
 @State<BooksStateModel>({
   name: 'books',
-  defaults: {
-    ids: [],
-    entities: {},
-    selectedBookId: null,
-  },
+  defaults: booksStateDefaults,
   children: [SearchState, CollectionState],
 })
 export class BooksState {
@@ -57,7 +59,7 @@ export class BooksState {
   static getBookCollection(
     state: BooksStateModel,
     collectionState: CollectionStateModel
-  ) {
+  ): Book[] {
     const entities = state.entities;
     const ids = [...collectionState.ids];
 
