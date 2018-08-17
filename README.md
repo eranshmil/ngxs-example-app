@@ -11,7 +11,6 @@ Built with [@angular/cli](https://github.com/angular/angular-cli)
 
 1.  Add store unit tests.
 2.  Enable storage plugin.
-3.  Get rid of entity base.
 
 ### Included
 

@@ -9,3 +9,4 @@ export * from './states/search.state';
 export * from './states/collection.state';
 export * from './actions/book.actions';
 export * from './actions/collection.actions';
+export * from './actions/search.actions';

@@ -4,8 +4,7 @@ import { Observable } from 'rxjs';
 import { Select, Store } from '@ngxs/store';
 
 import { Book } from '../models/book';
-import { BooksState, SearchState } from '../store';
-import { Search } from '../store/actions/book.actions';
+import { BooksState, SearchState, Search } from '../store';
 
 @Component({
   selector: 'bc-find-book-page',

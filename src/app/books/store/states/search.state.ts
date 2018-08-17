@@ -1,5 +1,11 @@
+import { catchError, map } from 'rxjs/operators';
+import { of } from 'rxjs';
+
 import { Action, Selector, State, StateContext } from '@ngxs/store';
-import { Search, SearchComplete, SearchError } from '../actions/book.actions';
+
+import { Search, SearchComplete, SearchError } from '../actions/search.actions';
+import { Book } from '../../models/book';
+import { GoogleBooksService } from '../../../core/services/google-books.service';
 
 export interface SearchStateModel {
   ids: string[];
@@ -18,6 +24,8 @@ export interface SearchStateModel {
   },
 })
 export class SearchState {
+  constructor(private googleBooks: GoogleBooksService) {}
+
   @Selector()
   static getIds(state: SearchStateModel) {
     return state.ids;
@@ -38,8 +46,11 @@ export class SearchState {
     return state.error;
   }
 
-  @Action(Search)
-  search({ patchState }: StateContext<SearchStateModel>, action: Search) {
+  @Action(Search, { cancelUncompleted: true })
+  search(
+    { dispatch, patchState }: StateContext<SearchStateModel>,
+    action: Search
+  ) {
     const query = action.payload;
 
     if (query === '') {
@@ -56,6 +67,15 @@ export class SearchState {
       error: '',
       query,
     });
+
+    return this.googleBooks.searchBooks(action.payload).pipe(
+      map((books: Book[]) => dispatch(new SearchComplete(books))),
+      catchError(err => {
+        dispatch(new SearchError(err.error.error.message));
+
+        return of(new SearchError(err));
+      })
+    );
   }
 
   @Action(SearchComplete)
