@@ -9,10 +9,9 @@ Built with [@angular/cli](https://github.com/angular/angular-cli)
 
 ## TODO
 
-1.  Explain about running the scripts.
-2.  Add store unit tests.
+1.  Add store unit tests.
+2.  Enable storage plugin.
 3.  Get rid of entity base.
-4.  Remove simple selectors.
 
 ### Included
 
