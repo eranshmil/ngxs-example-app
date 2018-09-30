@@ -11,7 +11,7 @@ import {
   AddBook,
 } from '../index';
 
-describe('Books', () => {
+describe('Collection State', () => {
   let store: Store;
 
   const book: Book = generateMockBook();

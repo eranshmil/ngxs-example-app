@@ -13,12 +13,13 @@ import {
   booksStateDefaults,
   BooksStateModel,
   BooksStates,
+  collectionStateDefaults,
   CollectionStateModel,
   SearchComplete,
-  SearchStateModel,
+  searchStateDefaults,
 } from '../index';
 
-describe('Books', () => {
+describe('Books State', () => {
   let store: Store;
 
   const book1: Book = generateMockBook();
@@ -31,16 +32,8 @@ describe('Books', () => {
   };
 
   const collection: CollectionStateModel = {
-    loaded: false,
-    loading: false,
+    ...collectionStateDefaults,
     ids: ['1'],
-  };
-
-  const search: SearchStateModel = {
-    ids: ['2'],
-    loading: false,
-    error: '',
-    query: '',
   };
 
   beforeEach(async(() => {
@@ -127,7 +120,7 @@ describe('Books', () => {
   it('[selector] it should get search results', () => {
     const selector = BooksState.getSearchResults(
       { ...booksStateDefaults, ids, entities },
-      search
+      { ...searchStateDefaults, ids: ['2'] }
     );
     const expected = [book2];
 

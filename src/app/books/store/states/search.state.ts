@@ -14,14 +14,16 @@ export interface SearchStateModel {
   query: string;
 }
 
+export const searchStateDefaults: SearchStateModel = {
+  ids: [],
+  loading: false,
+  error: '',
+  query: '',
+};
+
 @State<SearchStateModel>({
   name: 'search',
-  defaults: {
-    ids: [],
-    loading: false,
-    error: '',
-    query: '',
-  },
+  defaults: searchStateDefaults,
 })
 export class SearchState {
   constructor(private googleBooks: GoogleBooksService) {}
