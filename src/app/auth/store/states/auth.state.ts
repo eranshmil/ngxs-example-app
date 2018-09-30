@@ -1,10 +1,10 @@
 import { State } from '@ngxs/store';
 
 import { LoginPageState } from './login-page.state';
-import { StatusState } from './status.state';
+import { AuthStatusState } from './auth-status.state';
 
 @State({
   name: 'auth',
-  children: [StatusState, LoginPageState],
+  children: [AuthStatusState, LoginPageState],
 })
 export class AuthState {}

@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { Store, Select } from '@ngxs/store';
 
 import { CloseSidenav, OpenSidenav, LayoutState } from '../store';
-import { Logout, StatusState } from '../../auth/store';
+import { Logout, AuthStatusState } from '../../auth/store';
 
 @Component({
   selector: 'bc-app',
@@ -35,7 +35,7 @@ import { Logout, StatusState } from '../../auth/store';
 })
 export class AppComponent {
   @Select(LayoutState.getShowSidenav) showSidenav$: Observable<boolean>;
-  @Select(StatusState.getLoggedIn) loggedIn$: Observable<boolean>;
+  @Select(AuthStatusState.getLoggedIn) loggedIn$: Observable<boolean>;
 
   constructor(private store: Store) {}
 

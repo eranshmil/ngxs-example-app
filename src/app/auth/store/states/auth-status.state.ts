@@ -4,35 +4,34 @@ import { Navigate } from '@ngxs/router-plugin';
 import { User } from '../../models/user';
 import { LoginRedirect, LoginSuccess, Logout } from '../actions/auth.actions';
 
-export interface StatusStateModel {
+export interface AuthStatusStateModel {
   loggedIn: boolean;
   user: User | null;
 }
 
-const statusStateDefaults: StatusStateModel = {
+const authStatusStateDefaults: AuthStatusStateModel = {
   loggedIn: false,
   user: null,
 };
 
-@State<StatusStateModel>({
+@State<AuthStatusStateModel>({
   name: 'status',
-  defaults: statusStateDefaults,
+  defaults: authStatusStateDefaults,
 })
-// todo: rename to AuthStatusState
-export class StatusState {
+export class AuthStatusState {
   @Selector()
-  static getLoggedIn(state: StatusStateModel) {
+  static getLoggedIn(state: AuthStatusStateModel) {
     return state.loggedIn;
   }
 
   @Selector()
-  static getUser(state: StatusStateModel) {
+  static getUser(state: AuthStatusStateModel) {
     return state.user;
   }
 
   @Action(LoginSuccess)
   loginSuccess(
-    { patchState }: StateContext<StatusStateModel>,
+    { patchState }: StateContext<AuthStatusStateModel>,
     action: LoginSuccess
   ) {
     patchState({
@@ -42,8 +41,8 @@ export class StatusState {
   }
 
   @Action([Logout, LoginRedirect])
-  logout({ dispatch, setState }: StateContext<StatusStateModel>) {
-    setState(statusStateDefaults);
+  logout({ dispatch, setState }: StateContext<AuthStatusStateModel>) {
+    setState(authStatusStateDefaults);
 
     dispatch(new Navigate(['/login']));
   }

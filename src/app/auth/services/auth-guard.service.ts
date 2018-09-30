@@ -5,14 +5,14 @@ import { map, take } from 'rxjs/operators';
 
 import { Store } from '@ngxs/store';
 
-import { LoginRedirect, StatusState } from '../store';
+import { LoginRedirect, AuthStatusState } from '../store';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
   constructor(private store: Store) {}
 
   canActivate(): Observable<boolean> {
-    return this.store.select(StatusState.getLoggedIn).pipe(
+    return this.store.select(AuthStatusState.getLoggedIn).pipe(
       map(authed => {
         if (!authed) {
           this.store.dispatch(new LoginRedirect());
