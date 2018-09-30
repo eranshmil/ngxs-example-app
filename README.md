@@ -10,7 +10,6 @@ Built with [@angular/cli](https://github.com/angular/angular-cli)
 ## TODO
 
 1.  Create unit test for search collection.
-2.  Enable storage plugin.
 
 ### Included
 

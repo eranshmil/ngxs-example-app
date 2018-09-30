@@ -30,9 +30,9 @@ import { NgxsStoragePluginModule } from '@ngxs/storage-plugin';
     NgxsModule.forRoot(AppStates, {
       developmentMode: !environment.production,
     }),
-    /*NgxsStoragePluginModule.forRoot({
-      key: ['books'],
-    }),*/
+    NgxsStoragePluginModule.forRoot({
+      key: ['auth.status', 'books'],
+    }),
     NgxsRouterPluginModule.forRoot(),
     NgxsReduxDevtoolsPluginModule.forRoot({
       name: 'Ngxs Book Store DevTools',
