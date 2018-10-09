@@ -27,6 +27,15 @@ yarn
 
 # Start the server
 yarn start
+
+# Running test suites
+yarn test
+
+# Build the app
+yarn build:prod
+
+# Start the server with aot enabled
+yarn start:aot
 ```
 
 Navigate to [http://localhost:4200/](http://localhost:4200/) in your browser
