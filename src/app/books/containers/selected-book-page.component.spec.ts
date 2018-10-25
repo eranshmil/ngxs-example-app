@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { SelectedBookPageComponent } from './selected-book-page.component';
+import { HttpClientModule } from '@angular/common/http';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule } from '@angular/material';
 
@@ -11,7 +11,7 @@ import { BookAuthorsComponent } from '../components/book-authors.component';
 import { AddCommasPipe } from '../../shared/pipes/add-commas.pipe';
 import { AddBook, BooksStates, RemoveBook } from '../store';
 import { CoreModule } from '../../core/core.module';
-import { HttpClientModule } from '@angular/common/http';
+import { SelectedBookPageComponent } from './selected-book-page.component';
 
 describe('Selected Book Page', () => {
   let fixture: ComponentFixture<SelectedBookPageComponent>;

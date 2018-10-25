@@ -15,7 +15,7 @@ import { BooksStates, Select } from '../store';
 import { GoogleBooksService } from '../../core/services/google-books.service';
 
 describe('View Book Page', () => {
-  let params = new BehaviorSubject({});
+  const params = new BehaviorSubject({});
   let fixture: ComponentFixture<ViewBookPageComponent>;
   let store: Store;
   let instance: ViewBookPageComponent;
@@ -58,7 +58,7 @@ describe('View Book Page', () => {
 
   it('should dispatch a Select action on init', () => {
     const action = new Select('2');
-    params.next({ id: '2' });
+    parames.next({ id: '2' });
 
     fixture.detectChanges();
 
