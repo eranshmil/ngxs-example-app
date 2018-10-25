@@ -58,7 +58,7 @@ describe('View Book Page', () => {
 
   it('should dispatch a Select action on init', () => {
     const action = new Select('2');
-    parames.next({ id: '2' });
+    params.next({ id: '2' });
 
     fixture.detectChanges();
 
