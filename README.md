@@ -26,7 +26,7 @@ git clone https://github.com/eranshmil/ngxs-example-app.git
 yarn
 
 # Start the server
-yarn start
+yarn serve
 
 # Running test suites
 yarn test
@@ -35,7 +35,7 @@ yarn test
 yarn build:prod
 
 # Start the server with aot enabled
-yarn start:aot
+yarn serve:aot
 ```
 
 Navigate to [http://localhost:4200/](http://localhost:4200/) in your browser
