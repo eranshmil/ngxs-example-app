@@ -36,7 +36,6 @@ import { NgxsStoragePluginModule } from '@ngxs/storage-plugin';
     NgxsRouterPluginModule.forRoot(),
     NgxsReduxDevtoolsPluginModule.forRoot({
       name: 'Ngxs Book Store DevTools',
-      disabled: environment.production,
     }),
     NgxsLoggerPluginModule.forRoot({
       disabled: environment.production,
