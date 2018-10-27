@@ -6,7 +6,7 @@ This app is a book collection manager. The user can authenticate, use the Google
 
 Live demo could be found [here](https://ngxs-example-app.herokuapp.com). (ReduxDevTools enabled)
 
-## TODO
+### TODO
 
 1.  Create unit test for search collection.
 
@@ -15,7 +15,7 @@ Live demo could be found [here](https://ngxs-example-app.herokuapp.com). (ReduxD
 - [ngxs](https://ngxs.gitbook.io/ngxs/) - including storage, router, devtools and router plugins.
 - [jest](https://facebook.github.io/jest/)
 
-### Quick start
+### Quickstart
 
 ```bash
 # Clone the repo
