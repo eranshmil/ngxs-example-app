@@ -2,10 +2,9 @@
 
 **A port of [ngrx-example-app](https://github.com/ngrx/platform/tree/master/example-app).**
 
-This app is a book collection manager. The user can authenticate, use the Google Books API to search for
-books and add them to their collection.
+This app is a book collection manager. The user can authenticate, use the Google Books API to search for books and add them to their collection.
 
-Built with [@angular/cli](https://github.com/angular/angular-cli)
+Live demo could be found [here](https://ngxs-example-app.herokuapp.com). (ReduxDevTools enabled)
 
 ## TODO
 

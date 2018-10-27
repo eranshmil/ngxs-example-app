@@ -9,7 +9,6 @@
 /node_modules
 
 # IDEs and editors
-/.vscode
 /.idea
 .project
 .classpath
@@ -24,6 +23,7 @@
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+.angulardoc.json
 
 # misc
 /.sass-cache
