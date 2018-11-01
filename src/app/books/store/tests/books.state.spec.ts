@@ -53,34 +53,28 @@ describe('Books State', () => {
   it('[action] it should load a book', async(() => {
     store.dispatch(new Load(book1));
 
-    store
-      .selectOnce(state => state.books.entities)
-      .subscribe(actualEntities => {
-        expect(actualEntities).toEqual({
-          [book1.id]: book1,
-        });
-      });
+    const actualEntities = store.selectSnapshot(state => state.books.entities);
+
+    expect(actualEntities).toEqual({
+      [book1.id]: book1,
+    });
   }));
 
   it('[action] it should select a book', async(() => {
     store.dispatch(new Select(book2.id));
 
-    store
-      .selectOnce(state => state.books.selectedBookId)
-      .subscribe(actualSelectedBookId => {
-        expect(actualSelectedBookId).toEqual(book2.id);
-      });
+    const actualSelectedBookId = store.selectSnapshot(
+      state => state.books.selectedBookId
+    );
+    expect(actualSelectedBookId).toEqual(book2.id);
   }));
 
   it('[action] it should fill entities on search complete', async(() => {
     store.dispatch(new SearchComplete([book1, book2]));
 
-    store
-      .selectOnce(state => state.books)
-      .subscribe((actualState: BooksStateModel) => {
-        expect(actualState.ids).toEqual(ids);
-        expect(actualState.entities).toEqual(entities);
-      });
+    const actualState = store.selectSnapshot(state => state.books);
+    expect(actualState.ids).toEqual(ids);
+    expect(actualState.entities).toEqual(entities);
   }));
 
   it('[selector] it should get selected book', () => {

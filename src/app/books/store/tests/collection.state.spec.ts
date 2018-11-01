@@ -29,9 +29,8 @@ describe('Collection State', () => {
 
     store.dispatch(new AddBook(book));
 
-    store.selectOnce(state => state.collection.ids).subscribe(actualIds => {
-      expect(actualIds).toEqual([book.id]);
-    });
+    const actualIds = store.selectSnapshot(state => state.collection.ids);
+    expect(actualIds).toEqual([book.id]);
   }));
 
   it('[action] it should remove book', async(() => {
@@ -39,8 +38,7 @@ describe('Collection State', () => {
 
     store.dispatch(new RemoveBook(book));
 
-    store.selectOnce(state => state.collection.ids).subscribe(actualIds => {
-      expect(actualIds).toEqual([]);
-    });
+    const actualIds = store.selectSnapshot(state => state.collection.ids);
+    expect(actualIds).toEqual([]);
   }));
 });
