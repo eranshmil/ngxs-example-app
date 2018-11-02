@@ -9,7 +9,7 @@ import {
   CollectionState,
   RemoveBook,
   AddBook,
-} from '../index';
+} from '../';
 
 describe('Collection State', () => {
   let store: Store;

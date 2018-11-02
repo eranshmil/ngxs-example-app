@@ -50,7 +50,6 @@ describe('Find Book Page', () => {
         EllipsisPipe,
       ],
       providers: [
-        HttpClient,
         {
           provide: GoogleBooksService,
           useValue: { searchBooks: jest.fn() },

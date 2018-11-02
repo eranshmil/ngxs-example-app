@@ -17,7 +17,7 @@ import {
   CollectionStateModel,
   SearchComplete,
   searchStateDefaults,
-} from '../index';
+} from '../';
 
 describe('Books State', () => {
   let store: Store;
