@@ -10,7 +10,7 @@
     "serve:aot": "yarn run cli serve --prod",
     "test": "jest --watch",
     "build:prod": "yarn cli build --prod",
-    "postinstall": "ng build --aot --prod"
+    "postinstall": "if [ \"$NODE_ENV\" == production ]; then yarn build:prod; fi"
   },
   "lint-staged": {
     "*.{ts,json,md}": [
