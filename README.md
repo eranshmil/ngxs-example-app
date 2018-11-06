@@ -13,7 +13,7 @@ Live demo could be found [here](https://ngxs-example-app.herokuapp.com). (ReduxD
 
 ### Included
 
-- [ngxs](https://ngxs.gitbook.io/ngxs/) - including storage, router, devtools and router plugins.
+- [ngxs](https://ngxs.gitbook.io/ngxs/) - including storage, router, devtools and logger plugins.
 - [jest](https://facebook.github.io/jest/)
 
 ### Quickstart
