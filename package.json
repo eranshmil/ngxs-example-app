@@ -8,15 +8,9 @@
     "start": "node server.js",
     "serve": "yarn run cli serve",
     "serve:aot": "yarn run cli serve --prod",
-    "test": "jest --watch",
+    "test": "jest -c jest.config.js --watch",
     "build:prod": "yarn cli build --prod",
     "postinstall": "if [ \"$NODE_ENV\" = production ]; then yarn build:prod; fi"
-  },
-  "lint-staged": {
-    "*.{ts,json,md}": [
-      "prettier --write",
-      "git add"
-    ]
   },
   "private": true,
   "dependencies": {
@@ -78,33 +72,5 @@
     "protractor": "^5.3.2",
     "ts-node": "^7.0.1",
     "tslint": "^5.9.1"
-  },
-  "jest": {
-    "preset": "jest-preset-angular",
-    "setupTestFrameworkScriptFile": "<rootDir>/setup-jest.ts",
-    "globals": {
-      "ts-jest": {
-        "tsConfigFile": "src/tsconfig.spec.json"
-      },
-      "__TRANSFORM_HTML__": true
-    },
-    "transform": {
-      "^.+\\.(ts|js|html)$": "<rootDir>/node_modules/jest-preset-angular/preprocessor.js"
-    },
-    "testMatch": [
-      "<rootDir>/src/**/*.spec.ts"
-    ],
-    "moduleFileExtensions": [
-      "ts",
-      "js",
-      "html",
-      "json"
-    ],
-    "coveragePathIgnorePatterns": [
-      "/node_modules/"
-    ],
-    "modulePathIgnorePatterns": [
-      "dist"
-    ]
   }
 }
