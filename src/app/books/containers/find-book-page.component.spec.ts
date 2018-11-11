@@ -72,7 +72,7 @@ describe('Find Book Page', () => {
   });
 
   it('should dispatch a Search action on search', () => {
-    const $event: string = 'book name';
+    const $event = 'book name';
     const action = new Search($event);
     const response = cold('-a|', { a: [] });
     googleBooksService.searchBooks = jest.fn(() => response);
