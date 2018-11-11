@@ -10,7 +10,12 @@ import { BooksState, SearchState, Search } from '../store';
   selector: 'bc-find-book-page',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <bc-book-search [query]="searchQuery$ | async" [searching]="loading$ | async" [error]="error$ | async" (search)="search($event)"></bc-book-search>
+    <bc-book-search
+      [query]="searchQuery$ | async"
+      [searching]="loading$ | async"
+      [error]="error$ | async"
+      (search)="search($event)"
+    ></bc-book-search>
     <bc-book-preview-list [books]="books$ | async"></bc-book-preview-list>
   `,
 })

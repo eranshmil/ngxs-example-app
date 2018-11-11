@@ -14,7 +14,8 @@ import { AddBook, BooksState, RemoveBook } from '../store';
       [book]="book$ | async"
       [inCollection]="isSelectedBookInCollection$ | async"
       (add)="addToCollection($event)"
-      (remove)="removeFromCollection($event)">
+      (remove)="removeFromCollection($event)"
+    >
     </bc-book-detail>
   `,
 })

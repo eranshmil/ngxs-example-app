@@ -12,7 +12,8 @@ import { Login, LoginPageState } from '../store';
     <bc-login-form
       (submitted)="onSubmit($event)"
       [pending]="pending$ | async"
-      [errorMessage]="error$ | async">
+      [errorMessage]="error$ | async"
+    >
     </bc-login-form>
   `,
   styles: [],

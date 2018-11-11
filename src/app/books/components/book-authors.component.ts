@@ -6,9 +6,7 @@ import { Book } from '../models/book';
   selector: 'bc-book-authors',
   template: `
     <h5 mat-subheader>Written By:</h5>
-    <span>
-      {{ authors | bcAddCommas }}
-    </span>
+    <span>{{ authors | bcAddCommas }}</span>
   `,
   styles: [
     `

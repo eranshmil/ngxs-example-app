@@ -10,7 +10,6 @@ Live demo could be found [here](https://ngxs-example-app.herokuapp.com). (ReduxD
 
 1. Create unit test for search collection.
 1. Change @ngxs version to release when 3.3.0 is out.
-1. Fix husky + lint-staged + commitlint.
 
 ### Included
 
