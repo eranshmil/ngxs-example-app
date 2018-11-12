@@ -1,12 +1,13 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import {
   MatCardModule,
   MatInputModule,
   MatProgressSpinnerModule,
 } from '@angular/material';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { cold } from 'jasmine-marbles';
 import { NgxsModule, Store } from '@ngxs/store';
@@ -14,7 +15,6 @@ import { NgxsModule, Store } from '@ngxs/store';
 import { BookSearchComponent } from '../components/book-search.component';
 import { BookPreviewComponent } from '../components/book-preview.component';
 import { BookPreviewListComponent } from '../components/book-preview-list.component';
-import { RouterTestingModule } from '@angular/router/testing';
 import { EllipsisPipe } from '../../shared/pipes/ellipsis.pipe';
 import { BookAuthorsComponent } from '../components/book-authors.component';
 import { AddCommasPipe } from '../../shared/pipes/add-commas.pipe';

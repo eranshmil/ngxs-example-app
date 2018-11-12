@@ -11,7 +11,6 @@ import {
   Select,
   BooksState,
   booksStateDefaults,
-  BooksStateModel,
   BooksStates,
   collectionStateDefaults,
   CollectionStateModel,
