@@ -6,16 +6,16 @@ This app is a book collection manager. The user can authenticate, use the Google
 
 Live demo could be found [here](https://ngxs-example-app.herokuapp.com). (ReduxDevTools enabled)
 
-### TODO
+## TODO
 
 1. Change @ngxs version to release when 3.3.0 is out.
 
-### Included
+## Included
 
 - [ngxs](https://ngxs.gitbook.io/ngxs/) - including storage, router, devtools and logger plugins.
 - [jest](https://facebook.github.io/jest/)
 
-### Quickstart
+## Quickstart
 
 ```bash
 # Clone the repo
