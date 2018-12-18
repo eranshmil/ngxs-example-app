@@ -10,7 +10,7 @@
     "serve:aot": "yarn run cli serve --prod",
     "test": "jest -c jest.config.js --watch",
     "build:prod": "yarn cli build --prod",
-    "postinstall": "if [ \"$NODE_ENV\" = production ]; then yarn build:prod; fi"
+    "heroku-postbuild": "yarn build:prod"
   },
   "private": true,
   "dependencies": {
