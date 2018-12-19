@@ -4,7 +4,7 @@
   "scripts": {
     "cli": "ng",
     "precommit": "lint-staged",
-    "prettier": "prettier --write '**/*.{ts,js}'",
+    "format": "prettier --write \"**/*.{ts,js}\"",
     "start": "node server.js",
     "serve": "yarn run cli serve",
     "serve:aot": "yarn run cli serve --prod",
