@@ -30,7 +30,7 @@ exports[`Find Book Page should compile 1`] = `
       >
         <mat-form-field
           _ngcontent-c0=""
-          class="mat-form-field ng-tns-c3-0 mat-primary mat-form-field-type-mat-input mat-form-field-appearance-legacy mat-form-field-can-float mat-form-field-hide-placeholder _mat-animation-noopable"
+          class="mat-form-field ng-tns-c3-0 mat-primary mat-form-field-type-mat-input mat-form-field-appearance-legacy mat-form-field-can-float mat-form-field-has-label mat-form-field-hide-placeholder _mat-animation-noopable"
         >
           <div
             class="mat-form-field-wrapper"
