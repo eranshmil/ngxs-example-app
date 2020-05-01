@@ -10,7 +10,9 @@
     "serve:aot": "yarn run cli serve --prod",
     "test": "jest -c jest.config.js --watch",
     "build:prod": "yarn cli build --prod",
-    "heroku-postbuild": "yarn build:prod"
+    "heroku-postbuild": "yarn build:prod",
+    "snyk-protect": "snyk protect",
+    "prepare": "yarn run snyk-protect"
   },
   "private": true,
   "dependencies": {
@@ -41,7 +43,8 @@
     "rxjs-compat": "^6.4.0",
     "tslib": "^1.9.0",
     "typescript": "~3.2.4",
-    "zone.js": "^0.8.29"
+    "zone.js": "^0.8.29",
+    "snyk": "^1.316.1"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.13.4",
@@ -75,5 +78,6 @@
     "protractor": "^5.4.2",
     "ts-node": "^8.0.2",
     "tslint": "^5.13.1"
-  }
+  },
+  "snyk": true
 }
