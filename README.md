@@ -1,12 +1,16 @@
 # @ngxs example application
 
+
 **A port of [ngrx-example-app](https://github.com/ngrx/platform/tree/master/example-app).**
 
 This app is a book collection manager. The user can authenticate, use the Google Books API to search for books and add them to their collection.
 
 To log in, the username and password is `test`.
 
-Live demo could be found [here](https://ngxs-example-app.herokuapp.com). (ReduxDevTools enabled)
+Live demo could be found [here](https://ngxs-example-app.netlify.app). (ReduxDevTools enabled)
+Try the example-app on [StackBlitz](https://stackblitz.com/github/eranshmil/ngxs-example-app).
+
+![Screenshot](assets/screenshot.png)
 
 ## Included
 
