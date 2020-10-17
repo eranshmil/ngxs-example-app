@@ -20,9 +20,7 @@ import { Select } from '../store';
 @Component({
   selector: 'bc-view-book-page',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  template: `
-    <bc-selected-book-page></bc-selected-book-page>
-  `,
+  template: ` <bc-selected-book-page></bc-selected-book-page> `,
 })
 export class ViewBookPageComponent implements OnDestroy {
   actionsSubscription: Subscription;
@@ -30,7 +28,7 @@ export class ViewBookPageComponent implements OnDestroy {
   constructor(store: Store, route: ActivatedRoute) {
     this.actionsSubscription = route.params
       .pipe(
-        map(params => new Select(params.id)),
+        map((params) => new Select(params.id)),
         tap((action: Select) => store.dispatch(action))
       )
       .subscribe();

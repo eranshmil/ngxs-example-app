@@ -14,7 +14,7 @@ import { Logout, AuthStatusState } from '../../auth/store';
       <bc-sidenav [open]="showSidenav$ | async">
         <bc-nav-item
           (navigate)="closeSidenav()"
-          *ngIf="(loggedIn$ | async)"
+          *ngIf="loggedIn$ | async"
           routerLink="/"
           icon="book"
           hint="View your book collection"
@@ -23,7 +23,7 @@ import { Logout, AuthStatusState } from '../../auth/store';
         </bc-nav-item>
         <bc-nav-item
           (navigate)="closeSidenav()"
-          *ngIf="(loggedIn$ | async)"
+          *ngIf="loggedIn$ | async"
           routerLink="/books/find"
           icon="search"
           hint="Find your next book!"
@@ -33,7 +33,7 @@ import { Logout, AuthStatusState } from '../../auth/store';
         <bc-nav-item (navigate)="closeSidenav()" *ngIf="!(loggedIn$ | async)">
           Sign In
         </bc-nav-item>
-        <bc-nav-item (navigate)="logout()" *ngIf="(loggedIn$ | async)">
+        <bc-nav-item (navigate)="logout()" *ngIf="loggedIn$ | async">
           Sign Out
         </bc-nav-item>
       </bc-sidenav>

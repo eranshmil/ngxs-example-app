@@ -1,3 +1,4 @@
+import { Injectable } from '@angular/core';
 import { catchError, map } from 'rxjs/operators';
 
 import { State, Selector, Action, StateContext } from '@ngxs/store';
@@ -18,6 +19,7 @@ export interface LoginPageStateModel {
     pending: false,
   },
 })
+@Injectable()
 export class LoginPageState {
   constructor(private authService: AuthService) {}
 
@@ -41,8 +43,8 @@ export class LoginPageState {
       pending: true,
     });
     return this.authService.login(action.payload).pipe(
-      map(user => dispatch(new LoginSuccess({ user }))),
-      catchError(error => {
+      map((user) => dispatch(new LoginSuccess({ user }))),
+      catchError((error) => {
         return dispatch(new LoginFailure(error));
       })
     );

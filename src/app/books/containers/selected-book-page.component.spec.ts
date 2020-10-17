@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientModule } from '@angular/common/http';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { MatCardModule } from '@angular/material';
+import { MatCardModule } from '@angular/material/card';
 
 import { NgxsModule, Store } from '@ngxs/store';
 
@@ -37,7 +37,7 @@ describe('Selected Book Page', () => {
 
     fixture = TestBed.createComponent(SelectedBookPageComponent);
     instance = fixture.componentInstance;
-    store = TestBed.get(Store);
+    store = TestBed.inject(Store);
 
     spyOn(store, 'dispatch').and.callThrough();
   });

@@ -1,18 +1,22 @@
 {
   "compilerOptions": {
+    "downlevelIteration": true,
     "sourceMap": true,
     "declaration": false,
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
+    "esModuleInterop": true,
     "experimentalDecorators": true,
     "lib": ["es2017", "dom"],
     "outDir": "../out-tsc/spec",
-    "module": "commonjs",
-    "target": "es6",
-    "types": ["jasmine", "node"],
+    "module": "es2020",
+    "target": "es2015",
+    "types": ["jest", "node"],
     "baseUrl": ".",
     "rootDir": "../"
   },
-  "files": ["test.ts", "polyfills.ts"],
-  "include": ["**/*.spec.ts"]
+  "include": [
+    "src/**/*.spec.ts",
+    "src/**/*.d.ts"
+  ]
 }

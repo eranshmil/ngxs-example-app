@@ -1,4 +1,4 @@
-import { async, TestBed } from '@angular/core/testing';
+import { TestBed, waitForAsync } from '@angular/core/testing';
 
 import { NgxsModule, Store } from '@ngxs/store';
 import { MockProvider } from 'ngx-mock-provider';
@@ -35,46 +35,59 @@ describe('Books State', () => {
     ids: ['1'],
   };
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [NgxsModule.forRoot(BooksStates)],
-      providers: [
-        MockProvider({
-          provider: GoogleBooksService,
-        }),
-      ],
-    }).compileComponents();
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [NgxsModule.forRoot(BooksStates)],
+        providers: [
+          MockProvider({
+            provider: GoogleBooksService,
+          }),
+        ],
+      }).compileComponents();
 
-    store = TestBed.get(Store);
-    store.reset({ books: booksStateDefaults });
-  }));
+      store = TestBed.inject(Store);
+      store.reset({ books: booksStateDefaults });
+    })
+  );
 
-  it('[action] it should load a book', async(() => {
-    store.dispatch(new Load(book1));
+  it(
+    '[action] it should load a book',
+    waitForAsync(() => {
+      store.dispatch(new Load(book1));
 
-    const actualEntities = store.selectSnapshot(state => state.books.entities);
+      const actualEntities = store.selectSnapshot(
+        (state) => state.books.entities
+      );
 
-    expect(actualEntities).toEqual({
-      [book1.id]: book1,
-    });
-  }));
+      expect(actualEntities).toEqual({
+        [book1.id]: book1,
+      });
+    })
+  );
 
-  it('[action] it should select a book', async(() => {
-    store.dispatch(new Select(book2.id));
+  it(
+    '[action] it should select a book',
+    waitForAsync(() => {
+      store.dispatch(new Select(book2.id));
 
-    const actualSelectedBookId = store.selectSnapshot(
-      state => state.books.selectedBookId
-    );
-    expect(actualSelectedBookId).toEqual(book2.id);
-  }));
+      const actualSelectedBookId = store.selectSnapshot(
+        (state) => state.books.selectedBookId
+      );
+      expect(actualSelectedBookId).toEqual(book2.id);
+    })
+  );
 
-  it('[action] it should fill entities on search complete', async(() => {
-    store.dispatch(new SearchComplete([book1, book2]));
+  it(
+    '[action] it should fill entities on search complete',
+    waitForAsync(() => {
+      store.dispatch(new SearchComplete([book1, book2]));
 
-    const actualState = store.selectSnapshot(state => state.books);
-    expect(actualState.ids).toEqual(ids);
-    expect(actualState.entities).toEqual(entities);
-  }));
+      const actualState = store.selectSnapshot((state) => state.books);
+      expect(actualState.ids).toEqual(ids);
+      expect(actualState.entities).toEqual(entities);
+    })
+  );
 
   it('[selector] it should get selected book', () => {
     const selector = BooksState.getSelectedBook({

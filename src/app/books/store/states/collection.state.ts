@@ -1,3 +1,5 @@
+import { Injectable } from '@angular/core';
+
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 
 import { AddBook, RemoveBook } from '../actions/collection.actions';
@@ -18,6 +20,7 @@ export const collectionStateDefaults: CollectionStateModel = {
   name: 'collection',
   defaults: collectionStateDefaults,
 })
+@Injectable()
 export class CollectionState {
   @Selector()
   static getLoaded(state: CollectionStateModel) {
@@ -55,6 +58,6 @@ export class CollectionState {
     const state = getState();
     const bookId = action.payload.id;
 
-    patchState({ ids: state.ids.filter(id => id !== bookId) });
+    patchState({ ids: state.ids.filter((id) => id !== bookId) });
   }
 }

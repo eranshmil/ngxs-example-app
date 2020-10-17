@@ -1,4 +1,4 @@
-import { async, TestBed } from '@angular/core/testing';
+import { TestBed, waitForAsync } from '@angular/core/testing';
 
 import { NgxsModule, Store } from '@ngxs/store';
 
@@ -16,29 +16,39 @@ describe('Collection State', () => {
 
   const book: Book = generateMockBook();
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [NgxsModule.forRoot([CollectionState])],
-    }).compileComponents();
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [NgxsModule.forRoot([CollectionState])],
+      }).compileComponents();
 
-    store = TestBed.get(Store);
-  }));
+      store = TestBed.inject(Store);
+    })
+  );
 
-  it('[action] it should add book', async(() => {
-    store.reset({ collection: collectionStateDefaults });
+  it(
+    '[action] it should add book',
+    waitForAsync(() => {
+      store.reset({ collection: collectionStateDefaults });
 
-    store.dispatch(new AddBook(book));
+      store.dispatch(new AddBook(book));
 
-    const actualIds = store.selectSnapshot(state => state.collection.ids);
-    expect(actualIds).toEqual([book.id]);
-  }));
+      const actualIds = store.selectSnapshot((state) => state.collection.ids);
+      expect(actualIds).toEqual([book.id]);
+    })
+  );
 
-  it('[action] it should remove book', async(() => {
-    store.reset({ collection: { ...collectionStateDefaults, ids: [book.id] } });
+  it(
+    '[action] it should remove book',
+    waitForAsync(() => {
+      store.reset({
+        collection: { ...collectionStateDefaults, ids: [book.id] },
+      });
 
-    store.dispatch(new RemoveBook(book));
+      store.dispatch(new RemoveBook(book));
 
-    const actualIds = store.selectSnapshot(state => state.collection.ids);
-    expect(actualIds).toEqual([]);
-  }));
+      const actualIds = store.selectSnapshot((state) => state.collection.ids);
+      expect(actualIds).toEqual([]);
+    })
+  );
 });

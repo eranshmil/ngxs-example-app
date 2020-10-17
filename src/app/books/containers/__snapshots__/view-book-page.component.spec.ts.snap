@@ -6,7 +6,6 @@ exports[`View Book Page should compile 1`] = `
 >
   <bc-selected-book-page>
     <bc-book-detail
-      _nghost-c0=""
       ng-reflect-in-collection="false"
     >
       

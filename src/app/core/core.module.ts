@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
@@ -27,7 +27,7 @@ export const COMPONENTS = [
   exports: COMPONENTS,
 })
 export class CoreModule {
-  static forRoot() {
+  static forRoot(): ModuleWithProviders<CoreModule> {
     return {
       ngModule: CoreModule,
       providers: [GoogleBooksService],

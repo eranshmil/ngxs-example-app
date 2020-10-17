@@ -1,3 +1,5 @@
+import { Injectable } from '@angular/core';
+
 import { State, Action, Selector, StateContext } from '@ngxs/store';
 import { Navigate } from '@ngxs/router-plugin';
 
@@ -18,6 +20,7 @@ const authStatusStateDefaults: AuthStatusStateModel = {
   name: 'status',
   defaults: authStatusStateDefaults,
 })
+@Injectable()
 export class AuthStatusState {
   @Selector()
   static getLoggedIn(state: AuthStatusStateModel) {
