@@ -1,3 +1,4 @@
+import { Injectable } from '@angular/core';
 import { catchError, map } from 'rxjs/operators';
 import { of } from 'rxjs';
 
@@ -25,6 +26,7 @@ export const searchStateDefaults: SearchStateModel = {
   name: 'search',
   defaults: searchStateDefaults,
 })
+@Injectable()
 export class SearchState {
   constructor(private googleBooks: GoogleBooksService) {}
 
@@ -72,7 +74,7 @@ export class SearchState {
 
     return this.googleBooks.searchBooks(action.payload).pipe(
       map((books: Book[]) => dispatch(new SearchComplete(books))),
-      catchError(err => {
+      catchError((err) => {
         dispatch(new SearchError(err.error.error.message));
 
         return of(new SearchError(err));
@@ -86,7 +88,7 @@ export class SearchState {
     action: SearchComplete
   ) {
     patchState({
-      ids: action.payload.map(book => book.id),
+      ids: action.payload.map((book) => book.id),
       loading: false,
       error: '',
     });

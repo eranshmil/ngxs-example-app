@@ -1,3 +1,5 @@
+import { Injectable } from '@angular/core';
+
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 
 import { Book } from '../../models/book';
@@ -6,7 +8,7 @@ import { CollectionState, CollectionStateModel } from './collection.state';
 import { Load, Select } from '../actions/book.actions';
 import { SearchComplete } from '../actions/search.actions';
 
-export const arrayToObject = entities => {
+export const arrayToObject = (entities) => {
   return entities.reduce((obj, book: Book) => {
     return { ...obj, [book.id]: book };
   }, {});
@@ -31,6 +33,7 @@ export const booksStateDefaults: BooksStateModel = {
   defaults: booksStateDefaults,
   children: [SearchState, CollectionState],
 })
+@Injectable()
 export class BooksState {
   @Selector()
   static getEntities(state: BooksStateModel) {
@@ -63,7 +66,7 @@ export class BooksState {
     const entities = state.entities;
     const ids = [...collectionState.ids];
 
-    return ids.map(id => entities[id]);
+    return ids.map((id) => entities[id]);
   }
 
   @Selector([SearchState])
@@ -74,7 +77,7 @@ export class BooksState {
     const searchIds = [...searchState.ids];
     const books = state.entities;
 
-    return searchIds.map(id => books[id]);
+    return searchIds.map((id) => books[id]);
   }
 
   @Action(Load)
@@ -99,7 +102,7 @@ export class BooksState {
     action: SearchComplete
   ) {
     const state = getState();
-    const ids = action.payload.map<string>(book => book.id);
+    const ids = action.payload.map<string>((book) => book.id);
     const entities = arrayToObject(action.payload);
 
     patchState({
