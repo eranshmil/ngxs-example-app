@@ -8,7 +8,7 @@
     "experimentalDecorators": true,
     "lib": ["es2017", "dom"],
     "outDir": "../out-tsc/spec",
-    "module": "esnext",
+    "module": "es2020",
     "target": "es2015",
     "types": ["jasmine", "node"],
     "baseUrl": ".",
