@@ -8,7 +8,8 @@ This app is a book collection manager. The user can authenticate, use the Google
 To log in, the username and password is `test`.
 
 Live demo could be found [here](https://ngxs-example-app.netlify.app). (ReduxDevTools enabled)
-Try the example-app on [StackBlitz](https://stackblitz.com/github/eranshmil/ngxs-example-app).
+
+Try on [StackBlitz](https://stackblitz.com/github/eranshmil/ngxs-example-app).
 
 ![Screenshot](assets/screenshot.png)
 
@@ -34,9 +35,6 @@ yarn test
 
 # Build the app
 yarn build:prod
-
-# Start the server with aot enabled
-yarn serve:aot
 ```
 
 Navigate to [http://localhost:4200/](http://localhost:4200/) in your browser
