@@ -45,7 +45,7 @@ describe('View Book Page', () => {
 
     fixture = TestBed.createComponent(ViewBookPageComponent);
     instance = fixture.componentInstance;
-    store = TestBed.get(Store);
+    store = TestBed.inject(Store);
 
     spyOn(store, 'dispatch').and.callThrough();
   });

@@ -18,9 +18,9 @@ describe('Auth Guard', () => {
       providers: [AuthGuard, AuthService],
     });
 
-    store = TestBed.get(Store);
+    store = TestBed.inject(Store);
     spyOn(store, 'dispatch').and.callThrough();
-    guard = TestBed.get(AuthGuard);
+    guard = TestBed.inject(AuthGuard);
   });
 
   it('should return false if the user state is not logged in', () => {

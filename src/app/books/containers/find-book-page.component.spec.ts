@@ -57,8 +57,8 @@ describe('Find Book Page', () => {
 
     fixture = TestBed.createComponent(FindBookPageComponent);
     instance = fixture.componentInstance;
-    store = TestBed.get(Store);
-    googleBooksService = TestBed.get(GoogleBooksService);
+    store = TestBed.inject(Store);
+    googleBooksService = TestBed.inject(GoogleBooksService);
 
     spyOn(store, 'dispatch').and.callThrough();
   });

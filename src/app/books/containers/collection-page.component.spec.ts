@@ -44,7 +44,7 @@ describe('Collection Page', () => {
 
     fixture = TestBed.createComponent(CollectionPageComponent);
     instance = fixture.componentInstance;
-    store = TestBed.get(Store);
+    store = TestBed.inject(Store);
 
     spyOn(store, 'dispatch').and.callThrough();
   });

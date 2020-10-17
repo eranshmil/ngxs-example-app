@@ -15,8 +15,8 @@ describe('Service: GoogleBooks', () => {
       ],
     });
 
-    service = TestBed.get(GoogleBooksService);
-    http = TestBed.get(HttpClient);
+    service = TestBed.inject(GoogleBooksService);
+    http = TestBed.inject(HttpClient);
   });
 
   const data = {
