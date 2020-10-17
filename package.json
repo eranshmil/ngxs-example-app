@@ -9,8 +9,7 @@
     "serve": "yarn run cli serve",
     "serve:aot": "yarn run cli serve --prod",
     "test": "jest -c jest.config.js --watch",
-    "build:prod": "yarn cli build --prod",
-    "heroku-postbuild": "yarn build:prod"
+    "build:prod": "yarn cli build --prod"
   },
   "private": true,
   "dependencies": {
@@ -32,8 +31,6 @@
     "@ngxs/storage-plugin": "^3.7.0",
     "@ngxs/store": "^3.7.0",
     "core-js": "^3.6.5",
-    "express": "^4.17.1",
-    "path": "^0.12.7",
     "rxjs": "^6.6.3",
     "tslib": "^2.0.0",
     "typescript": "~4.0.3",
@@ -52,7 +49,6 @@
     "babel-core": "^7.0.0-bridge.0",
     "babel-jest": "^26.5.2",
     "codelyzer": "^6.0.1",
-    "enhanced-resolve": "^5.2.0",
     "husky": "^4.3.0",
     "jasmine-core": "~3.6.0",
     "jasmine-marbles": "^0.6.0",
