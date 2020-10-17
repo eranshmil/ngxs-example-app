@@ -7,7 +7,7 @@ export const routes: Routes = [
   { path: '', redirectTo: '/books', pathMatch: 'full' },
   {
     path: 'books',
-    loadChildren: './books/books.module#BooksModule',
+    loadChildren: () => import('./books/books.module').then(m => m.BooksModule),
     canActivate: [AuthGuard],
   },
   { path: '**', component: NotFoundPageComponent },
